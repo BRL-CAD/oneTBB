@@ -56,9 +56,9 @@ public:
         base_task* parent_snapshot = m_parent;
         const_cast<base_task*>(this)->execute();
         if (m_parent && parent_snapshot == m_parent && m_child_counter == 0) {
-            if (m_parent->remove_reference() == 0) {
-                m_parent->operator()();
-                delete m_parent;
+            if (parent_snapshot->remove_reference() == 0) {
+                parent_snapshot->operator()();
+                delete parent_snapshot;
             }
         }
 
